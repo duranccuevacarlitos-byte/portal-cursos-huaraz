@@ -1,24 +1,687 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial=1.0">
-        <title>Portal de Cursos </title>
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal Cursos Huaraz — Descubre oportunidades de aprendizaje digital, programación, IA y más en el CFP Huaraz.">
+  <title>Portal Cursos Huaraz — El Conocimiento No Tiene Límites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    
-    <body>
-        <h1> PORTAL DE CURSOS DEL CFP HUARAZ</h1>
-        <p>Bienvenidos al CFP HUARAZ </p>
+  <!-- ═══════════════════════════════════════════
+       SPLASH SCREEN — Animación de Inicio
+  ════════════════════════════════════════════ -->
+  <div id="splash" class="splash" role="region" aria-label="Pantalla de inicio">
+    <!-- Canvas de partículas -->
+    <canvas id="splash-canvas" aria-hidden="true"></canvas>
 
-        <h2>Cursos Disponibles </h2>
-        <ul>
-            <li>Desarrollo de Aplicaciones Web </li>
-            <li>Inteligencia Artificial </li>
-            <li>Desarrollo de Soluciones IoT</li>
+    <!-- Grid digital de fondo -->
+    <div class="splash-grid" aria-hidden="true"></div>
+
+    <!-- Contenedor central -->
+    <div class="splash-center">
+      <!-- Escaner superior -->
+      <div class="scan-line" aria-hidden="true"></div>
+
+      <!-- Logo animado -->
+      <div class="splash-logo" aria-hidden="true">
+        <span class="bracket">[</span>
+        <span class="logo-text glitch" data-text="PCH">PCH</span>
+        <span class="bracket">]</span>
+      </div>
+
+      <!-- Terminal de mensajes -->
+      <div class="terminal-box" role="status" aria-live="polite">
+        <div class="terminal-header" aria-hidden="true">
+          <span class="t-dot red"></span>
+          <span class="t-dot yellow"></span>
+          <span class="t-dot green"></span>
+          <span class="t-title">system_init.exe</span>
+        </div>
+        <div class="terminal-body">
+          <div id="terminal-lines" aria-label="Mensajes del sistema"></div>
+          <div class="cursor-blink" aria-hidden="true">█</div>
+        </div>
+      </div>
+
+      <!-- Barra de progreso -->
+      <div class="progress-wrap" aria-hidden="true">
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <span id="progress-pct" class="progress-pct">0%</span>
+      </div>
+
+      <!-- Título principal con glitch -->
+      <div id="splash-title" class="splash-main-title" aria-label="Portal Cursos Huaraz">
+        <span class="glitch-title" data-text="PORTAL CURSOS HUARAZ">PORTAL CURSOS HUARAZ</span>
+      </div>
+    </div>
+
+    <!-- Botón para omitir -->
+    <button id="skip-btn" class="skip-btn" aria-label="Omitir animación de inicio">
+      OMITIR &nbsp;›
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN PAGE
+  ════════════════════════════════════════════ -->
+  <div id="main-page" class="main-page hidden" aria-hidden="true">
+
+    <!-- ── NAVBAR ── -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Navegación principal">
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="#inicio" class="nav-logo" aria-label="Portal Cursos Huaraz — Inicio">
+          <span class="logo-bracket">[</span>
+          <span class="logo-name">PCH</span>
+          <span class="logo-bracket">]</span>
+          <span class="logo-full">Portal Cursos Huaraz</span>
+        </a>
+
+        <!-- Links escritorio -->
+        <ul class="nav-links" role="list">
+          <li><a href="index.html" class="nav-link active">Inicio</a></li>
+          <li><a href="cursos.html" class="nav-link">Cursos</a></li>
+          <li><a href="categorias.html" class="nav-link">Categorías</a></li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
         </ul>
-        <h2>Contacto </h2>
-        <p>Solicita información sobre nuestros cursos. </p>
-        <p>Correo de Ejemplo: cursos@example.com</p>
-    </body>
+
+        <!-- CTA desktop -->
+        <a href="cursos.html" class="nav-cta" aria-label="Explorar los cursos disponibles">Explorar Cursos</a>
+
+        <!-- Hamburguesa móvil -->
+        <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Menú móvil" aria-hidden="true">
+        <ul role="list">
+          <li><a href="index.html" class="mob-link" data-close>Inicio</a></li>
+          <li><a href="cursos.html" class="mob-link" data-close>Cursos</a></li>
+          <li><a href="categorias.html" class="mob-link" data-close>Categorías</a></li>
+          <li><a href="nosotros.html" class="mob-link" data-close>Nosotros</a></li>
+          <li><a href="contacto.html" class="mob-link" data-close>Contacto</a></li>
+          <li><a href="cursos.html" class="mob-cta" data-close>Explorar Cursos</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section id="inicio" class="hero" aria-label="Sección principal">
+      <!-- Video de fondo -->
+      <div class="hero-video-wrap" aria-hidden="true">
+        <video
+          id="hero-video"
+          class="hero-video"
+          src="assets/VIDEO.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        ></video>
+        <div class="hero-video-overlay"></div>
+      </div>
+
+      <!-- HUD corners -->
+      <div class="hud-corner tl" aria-hidden="true"></div>
+      <div class="hud-corner tr" aria-hidden="true"></div>
+      <div class="hud-corner bl" aria-hidden="true"></div>
+      <div class="hud-corner br" aria-hidden="true"></div>
+
+      <!-- Scan line hero -->
+      <div class="hero-scanline" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge fade-in-up delay-1" aria-label="Sistema activo">
+          <span class="badge-dot" aria-hidden="true"></span>
+          SISTEMA ACTIVO — CFP HUARAZ
+        </div>
+
+        <h1 class="hero-title fade-in-up delay-2">
+          <span class="title-line">EL CONOCIMIENTO</span>
+          <span class="title-line accent">NO TIENE LÍMITES.</span>
+          <span class="title-line">TU PRÓXIMO NIVEL</span>
+          <span class="title-line neon-green">COMIENZA AQUÍ.</span>
+        </h1>
+
+        <p class="hero-desc fade-in-up delay-3">
+          Descubre nuevas oportunidades de aprendizaje, desarrolla tus habilidades
+          y explora el mundo de la formación digital con Portal Cursos Huaraz.
+        </p>
+
+        <div class="hero-btns fade-in-up delay-4">
+          <a href="#cursos" class="btn-primary" aria-label="Ver todos los cursos disponibles">
+            <span class="btn-icon" aria-hidden="true">⚡</span>
+            EXPLORAR CURSOS
+          </a>
+          <a href="#nosotros" class="btn-secondary" aria-label="Conocer más sobre el portal">
+            CONOCER EL PORTAL
+            <span class="btn-arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
+
+        <!-- Indicadores HUD -->
+        <div class="hero-stats fade-in-up delay-5" aria-label="Datos del portal">
+          <div class="stat-item">
+            <span class="stat-val neon-green">6+</span>
+            <span class="stat-label">Áreas</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-val neon-cyan">100%</span>
+            <span class="stat-label">Digital</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-val neon-green">CFP</span>
+            <span class="stat-label">Huaraz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span>SCROLL</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ── CURSOS ── -->
+    <section id="cursos" class="section courses-section" aria-label="Catálogo de cursos">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag" aria-hidden="true">// MÓDULOS</div>
+          <h2 class="section-title">EXPLORA TU PRÓXIMO <span class="neon-green">DESAFÍO</span></h2>
+          <p class="section-sub">
+            Contenido demostrativo — Las áreas reales del portal serán completadas por el equipo.
+          </p>
+        </div>
+
+        <div class="courses-grid">
+
+          <!-- Tarjeta 1 -->
+          <article class="course-card reveal" tabindex="0" aria-label="Curso: Desarrollo Web">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-corner tl" aria-hidden="true"></div>
+            <div class="card-corner br" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <span class="card-tag web">WEB</span>
+            </div>
+            <h3 class="card-title">Programación y Desarrollo Web</h3>
+            <p class="card-desc">Aprende HTML, CSS, JavaScript y frameworks modernos para crear aplicaciones web profesionales y responsivas.</p>
+            <div class="card-meta">
+              <span class="meta-item">
+                <span aria-hidden="true">▸</span> Nivel: Básico → Avanzado
+              </span>
+              <span class="meta-item" style="color: var(--neon-cyan); margin-left: 10px;">
+                <span aria-hidden="true">🕒</span> Lun y Mié: 4:00 PM - 6:00 PM
+              </span>
+            </div>
+            <a href="cursos.html" class="card-btn" aria-label="Obtener información sobre Desarrollo Web">
+              VER MÓDULO <span aria-hidden="true">›</span>
+            </a>
+          </article>
+
+          <!-- Tarjeta 2 -->
+          <article class="course-card reveal" tabindex="0" aria-label="Curso: Inteligencia Artificial">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-corner tl" aria-hidden="true"></div>
+            <div class="card-corner br" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon ai" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+              </div>
+              <span class="card-tag ai-tag">IA</span>
+            </div>
+            <h3 class="card-title">Inteligencia Artificial</h3>
+            <p class="card-desc">Explora machine learning, redes neuronales y herramientas de IA aplicadas al mundo real y al desarrollo de soluciones.</p>
+            <div class="card-meta">
+              <span class="meta-item">
+                <span aria-hidden="true">▸</span> Nivel: Intermedio → Avanzado
+              </span>
+              <span class="meta-item" style="color: var(--neon-cyan); margin-left: 10px;">
+                <span aria-hidden="true">🕒</span> Mar y Jue: 5:00 PM - 7:00 PM
+              </span>
+            </div>
+            <a href="cursos.html" class="card-btn" aria-label="Obtener información sobre Inteligencia Artificial">
+              VER MÓDULO <span aria-hidden="true">›</span>
+            </a>
+          </article>
+
+          <!-- Tarjeta 3 -->
+          <article class="course-card reveal" tabindex="0" aria-label="Curso: Diseño Gráfico">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-corner tl" aria-hidden="true"></div>
+            <div class="card-corner br" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon design" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="13.5" cy="6.5" r=".5"></circle>
+                  <circle cx="17.5" cy="10.5" r=".5"></circle>
+                  <circle cx="8.5" cy="7.5" r=".5"></circle>
+                  <circle cx="6.5" cy="12.5" r=".5"></circle>
+                  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125..."></path>
+                  <path d="M2 12h20"></path>
+                </svg>
+              </div>
+              <span class="card-tag design-tag">DISEÑO</span>
+            </div>
+            <h3 class="card-title">Diseño Gráfico y Creatividad Digital</h3>
+            <p class="card-desc">Domina herramientas de diseño vectorial, edición de imágenes y principios visuales para crear contenido impactante.</p>
+            <div class="card-meta">
+              <span class="meta-item">
+                <span aria-hidden="true">▸</span> Nivel: Básico → Avanzado
+              </span>
+            </div>
+            <a href="#contacto" class="card-btn" aria-label="Obtener información sobre Diseño Gráfico">
+              VER MÓDULO <span aria-hidden="true">›</span>
+            </a>
+          </article>
+
+          <!-- Tarjeta 4 -->
+          <article class="course-card reveal" tabindex="0" aria-label="Curso: Marketing Digital">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-corner tl" aria-hidden="true"></div>
+            <div class="card-corner br" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon marketing" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <span class="card-tag mkt-tag">MARKETING</span>
+            </div>
+            <h3 class="card-title">Marketing Digital</h3>
+            <p class="card-desc">Estrategias de SEO, redes sociales, publicidad digital y analítica web para potenciar la presencia online de cualquier proyecto.</p>
+            <div class="card-meta">
+              <span class="meta-item">
+                <span aria-hidden="true">▸</span> Nivel: Básico → Intermedio
+              </span>
+            </div>
+            <a href="#contacto" class="card-btn" aria-label="Obtener información sobre Marketing Digital">
+              VER MÓDULO <span aria-hidden="true">›</span>
+            </a>
+          </article>
+
+          <!-- Tarjeta 5 -->
+          <article class="course-card reveal" tabindex="0" aria-label="Curso: Ofimática">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-corner tl" aria-hidden="true"></div>
+            <div class="card-corner br" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon office" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+              </div>
+              <span class="card-tag ofi-tag">OFIMÁTICA</span>
+            </div>
+            <h3 class="card-title">Ofimática y Productividad</h3>
+            <p class="card-desc">Domina las herramientas de Microsoft Office, Google Workspace y automatización para mejorar tu productividad laboral.</p>
+            <div class="card-meta">
+              <span class="meta-item">
+                <span aria-hidden="true">▸</span> Nivel: Básico
+              </span>
+            </div>
+            <a href="#contacto" class="card-btn" aria-label="Obtener información sobre Ofimática">
+              VER MÓDULO <span aria-hidden="true">›</span>
+            </a>
+          </article>
+
+          <!-- Tarjeta 6 -->
+          <article class="course-card reveal" tabindex="0" aria-label="Curso: Tecnología y Redes">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-corner tl" aria-hidden="true"></div>
+            <div class="card-corner br" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon network" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="12" cy="5" r="3"></circle>
+                  <circle cx="5" cy="19" r="3"></circle>
+                  <circle cx="19" cy="19" r="3"></circle>
+                  <line x1="12" y1="8" x2="5" y2="16"></line>
+                  <line x1="12" y1="8" x2="19" y2="16"></line>
+                </svg>
+              </div>
+              <span class="card-tag net-tag">REDES</span>
+            </div>
+            <h3 class="card-title">Tecnología y Redes</h3>
+            <p class="card-desc">Fundamentos de redes informáticas, ciberseguridad, configuración de sistemas y soporte técnico profesional.</p>
+            <div class="card-meta">
+              <span class="meta-item">
+                <span aria-hidden="true">▸</span> Nivel: Básico → Avanzado
+              </span>
+              <span class="meta-item" style="color: var(--neon-cyan); margin-left: 10px;">
+                <span aria-hidden="true">🕒</span> Vie: 3:00 PM - 6:00 PM
+              </span>
+            </div>
+            <a href="cursos.html" class="card-btn" aria-label="Obtener información sobre Tecnología y Redes">
+              VER MÓDULO <span aria-hidden="true">›</span>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CATEGORÍAS ── -->
+    <section id="categorias" class="section categories-section" aria-label="Categorías de aprendizaje">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag" aria-hidden="true">// ÁREAS</div>
+          <h2 class="section-title">ÁREAS DE <span class="neon-cyan">APRENDIZAJE</span></h2>
+          <p class="section-sub">Elige tu camino de formación digital</p>
+        </div>
+
+        <div class="categories-grid">
+          <div class="cat-card reveal" tabindex="0">
+            <div class="cat-icon" style="--accent:#00ff9f" aria-hidden="true">⌨️</div>
+            <span class="cat-name">Programación</span>
+          </div>
+          <div class="cat-card reveal" tabindex="0">
+            <div class="cat-icon" style="--accent:#00e5ff" aria-hidden="true">🤖</div>
+            <span class="cat-name">Inteligencia Artificial</span>
+          </div>
+          <div class="cat-card reveal" tabindex="0">
+            <div class="cat-icon" style="--accent:#ff6b6b" aria-hidden="true">🎨</div>
+            <span class="cat-name">Diseño Digital</span>
+          </div>
+          <div class="cat-card reveal" tabindex="0">
+            <div class="cat-icon" style="--accent:#f7b731" aria-hidden="true">📊</div>
+            <span class="cat-name">Marketing</span>
+          </div>
+          <div class="cat-card reveal" tabindex="0">
+            <div class="cat-icon" style="--accent:#a29bfe" aria-hidden="true">🖥️</div>
+            <span class="cat-name">Ofimática</span>
+          </div>
+          <div class="cat-card reveal" tabindex="0">
+            <div class="cat-icon" style="--accent:#00ff9f" aria-hidden="true">🌐</div>
+            <span class="cat-name">Redes</span>
+          </div>
+          <div class="cat-card reveal" tabindex="0">
+            <div class="cat-icon" style="--accent:#00e5ff" aria-hidden="true">📱</div>
+            <span class="cat-name">Apps Móviles</span>
+          </div>
+          <div class="cat-card reveal" tabindex="0">
+            <div class="cat-icon" style="--accent:#ff6b6b" aria-hidden="true">🔒</div>
+            <span class="cat-name">Ciberseguridad</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BENEFICIOS ── -->
+    <section id="nosotros" class="section benefits-section" aria-label="Beneficios del portal">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag" aria-hidden="true">// VENTAJAS</div>
+          <h2 class="section-title">¿POR QUÉ <span class="neon-green">PORTAL CURSOS HUARAZ</span>?</h2>
+          <p class="section-sub">Una plataforma educativa diseñada para tu crecimiento digital</p>
+        </div>
+
+        <div class="benefits-grid">
+          <div class="benefit-card reveal">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="benefit-title">Descubrimiento de Habilidades</h3>
+            <p class="benefit-desc">Explora áreas que quizás no sabías que te apasionaban. El aprendizaje abre puertas inesperadas hacia tu vocación digital.</p>
+          </div>
+
+          <div class="benefit-card reveal">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+            </div>
+            <h3 class="benefit-title">Aprendizaje Organizado</h3>
+            <p class="benefit-desc">Contenido estructurado en módulos progresivos que te permiten avanzar a tu propio ritmo sin perder el hilo de tu formación.</p>
+          </div>
+
+          <div class="benefit-card reveal">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="benefit-title">Exploración Tecnológica</h3>
+            <p class="benefit-desc">Accede a diferentes ramas del mundo tech — desde programación web hasta inteligencia artificial — en un solo lugar.</p>
+          </div>
+
+          <div class="benefit-card reveal">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="benefit-title">Desarrollo Profesional</h3>
+            <p class="benefit-desc">Potencia tu perfil laboral y personal con conocimientos prácticos y relevantes para el mercado digital de hoy y del futuro.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-section" aria-label="Llamada a la acción">
+      <canvas id="cta-canvas" aria-hidden="true"></canvas>
+      <div class="cta-content reveal">
+        <div class="cta-tag" aria-hidden="true">// START NOW</div>
+        <h2 class="cta-title">
+          TU SIGUIENTE GRAN IDEA<br>
+          <span class="neon-green">COMIENZA CON LO QUE APRENDES HOY.</span>
+        </h2>
+        <p class="cta-sub">No esperes más. Da el primer paso hacia tu transformación digital.</p>
+        <a href="cursos.html" class="btn-primary btn-large" aria-label="Explorar el catálogo completo de cursos">
+          <span class="btn-icon" aria-hidden="true">🚀</span>
+          EXPLORAR CURSOS AHORA
+        </a>
+      </div>
+      <div class="cta-decoration" aria-hidden="true">
+        <div class="deco-circle c1"></div>
+        <div class="deco-circle c2"></div>
+        <div class="deco-ring"></div>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN DOCENTES ── -->
+    <section id="docentes" class="section teachers-section" aria-label="Nuestros Docentes - CFP Huaraz">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag" aria-hidden="true">// INSTRUCTORES</div>
+          <h2 class="section-title">NUESTROS <span class="neon-green">DOCENTES</span> — CFP HUARAZ</h2>
+          <p class="section-sub">Instructores certificados con amplia experiencia en tecnologías digitales</p>
+        </div>
+
+        <div class="courses-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+          <!-- Tarjeta de Docente 1 -->
+          <article class="course-card reveal" tabindex="0" aria-label="Docente: Ing. Carlos Mendoza">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-corner tl" aria-hidden="true"></div>
+            <div class="card-corner br" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon" aria-hidden="true" style="font-size: 1.4rem; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; background: rgba(0, 255, 159, 0.12); border-radius: 8px; border: 1px solid var(--neon-green); color: var(--neon-green);">
+                👨‍🏫
+              </div>
+              <span class="card-tag web">DESARROLLO WEB</span>
+            </div>
+            <h3 class="card-title">Ing. Carlos Mendoza</h3>
+            <p class="card-desc">Instructor certificado con más de 5 años de experiencia en la enseñanza de tecnologías frontend y backend.</p>
+            <div class="card-meta">
+              <span class="meta-item"><span aria-hidden="true">▸</span> <strong>Especialidad:</strong> Desarrollo Web</span>
+            </div>
+          </article>
+
+          <!-- Tarjeta de Docente 2 -->
+          <article class="course-card reveal" tabindex="0" aria-label="Docente: Lic. Ana Ramírez">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-corner tl" aria-hidden="true"></div>
+            <div class="card-corner br" aria-hidden="true"></div>
+            <div class="card-header">
+              <div class="card-icon network" aria-hidden="true" style="font-size: 1.4rem; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; background: rgba(0, 229, 255, 0.12); border-radius: 8px; border: 1px solid var(--neon-cyan); color: var(--neon-cyan);">
+                👩‍🏫
+              </div>
+              <span class="card-tag net-tag">REDES Y SEGURIDAD</span>
+            </div>
+            <h3 class="card-title">Lic. Ana Ramírez</h3>
+            <p class="card-desc">Experta en infraestructura de redes, soporte técnico y aseguramiento de plataformas digitales del CFP.</p>
+            <div class="card-meta">
+              <span class="meta-item"><span aria-hidden="true">▸</span> <strong>Especialidad:</strong> Redes y Seguridad</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACTO ── -->
+    <section id="contacto" class="section contact-section" aria-label="Contacto">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag" aria-hidden="true">// CONTACTO</div>
+          <h2 class="section-title">¿TIENES <span class="neon-cyan">PREGUNTAS</span>?</h2>
+          <p class="section-sub">Solicita información sobre los módulos disponibles en el portal</p>
+        </div>
+        <div class="contact-box reveal">
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="ci-icon" aria-hidden="true">📍</span>
+              <div>
+                <strong>CFP Huaraz</strong>
+                <span>Centro de Formación Profesional</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="ci-icon" aria-hidden="true">✉️</span>
+              <div>
+                <strong>Correo</strong>
+                <span>Disponible próximamente</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="ci-icon" aria-hidden="true">📞</span>
+              <div>
+                <strong>Teléfono</strong>
+                <span>Disponible próximamente</span>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" id="contact-form" novalidate aria-label="Formulario de contacto">
+            <div class="form-group">
+              <label for="cf-name">Nombre completo</label>
+              <input type="text" id="cf-name" name="nombre" placeholder="Tu nombre" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Correo electrónico</label>
+              <input type="email" id="cf-email" name="correo" placeholder="tucorreo@ejemplo.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="cf-course">Área de interés</label>
+              <select id="cf-course" name="area">
+                <option value="">— Selecciona un área —</option>
+                <option>Programación y Desarrollo Web</option>
+                <option>Inteligencia Artificial</option>
+                <option>Diseño Gráfico y Creatividad Digital</option>
+                <option>Marketing Digital</option>
+                <option>Ofimática y Productividad</option>
+                <option>Tecnología y Redes</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-msg">Mensaje</label>
+              <textarea id="cf-msg" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full" id="form-submit-btn">
+              ENVIAR MENSAJE <span aria-hidden="true">›</span>
+            </button>
+            <p class="form-note" aria-hidden="true">* El formulario es demostrativo. El backend será implementado por el equipo.</p>
+            <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo" aria-label="Portal Cursos Huaraz">
+              <span class="logo-bracket">[</span>
+              <span class="logo-name">PCH</span>
+              <span class="logo-bracket">]</span>
+            </div>
+            <p class="footer-tagline">Portal Cursos Huaraz — CFP Huaraz</p>
+            <p class="footer-desc">Plataforma educativa digital orientada a la formación tecnológica y profesional en la región de Huaraz, Perú.</p>
+          </div>
+
+          <nav class="footer-nav" aria-label="Navegación del pie de página">
+            <h4 class="footer-heading">Navegación</h4>
+            <ul role="list">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="cursos.html">Cursos</a></li>
+              <li><a href="categorias.html">Categorías</a></li>
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer-areas">
+            <h4 class="footer-heading">Áreas</h4>
+            <ul role="list">
+              <li>Programación Web</li>
+              <li>Inteligencia Artificial</li>
+              <li>Diseño Digital</li>
+              <li>Marketing Digital</li>
+              <li>Ofimática</li>
+              <li>Redes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2024 Portal Cursos Huaraz — CFP Huaraz. Todos los derechos reservados.</span>
+          <span class="footer-status" aria-hidden="true">
+            <span class="status-dot"></span> SISTEMA ACTIVO
+          </span>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /main-page -->
+
+  <script src="script.js"></script>
+</body>
 </html>

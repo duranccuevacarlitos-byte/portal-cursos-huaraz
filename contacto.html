@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacto — Portal Cursos Huaraz. Solicita información sobre los cursos disponibles.">
+  <title>Contacto — Portal Cursos Huaraz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero {
+      position: relative; min-height: 42vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: calc(var(--nav-h) + 60px) 20px 60px;
+      background: var(--dark); overflow: hidden; text-align: center;
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(0,229,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,.04) 1px, transparent 1px);
+      background-size: 55px 55px; pointer-events: none;
+    }
+    .page-hero-glow {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(0,229,255,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-breadcrumb { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .2em; color: var(--muted); margin-bottom: 16px; }
+    .page-breadcrumb a { color: var(--neon-cyan); transition: var(--transition); }
+    .page-breadcrumb a:hover { text-shadow: 0 0 10px var(--neon-cyan); }
+    .page-title { font-family: var(--font-head); font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: .08em; margin-bottom: 16px; line-height: 1.1; }
+    .page-sub { color: rgba(232,240,255,.6); font-size: .95rem; max-width: 500px; margin: 0 auto; }
+
+    /* Full-width contact layout */
+    .contact-page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 40px;
+    }
+    @media(max-width:768px){ .contact-page-grid { grid-template-columns: 1fr; } }
+
+    /* Info panel */
+    .contact-info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .info-header {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      letter-spacing: .08em;
+      color: var(--neon-cyan);
+      margin-bottom: 8px;
+    }
+    .info-desc {
+      color: rgba(232,240,255,.6);
+      font-size: .88rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .info-item-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: var(--transition);
+    }
+    .info-item-card:hover {
+      border-color: rgba(0,229,255,.3);
+      background: var(--dark3);
+    }
+    .info-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .info-label {
+      font-family: var(--font-head);
+      font-size: .72rem;
+      letter-spacing: .15em;
+      color: var(--neon-cyan);
+      margin-bottom: 4px;
+    }
+    .info-value {
+      font-family: var(--font-mono);
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    /* Form panel */
+    .contact-form-panel {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-form-panel::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
+    }
+    .form-panel-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      letter-spacing: .1em;
+      color: var(--neon-green);
+      margin-bottom: 24px;
+    }
+    @media(max-width:480px){ .contact-form-panel { padding: 28px 20px; } }
+
+    .back-top {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: .72rem;
+      color: var(--muted); transition: var(--transition); margin-top: 48px;
+    }
+    .back-top:hover { color: var(--neon-cyan); }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar" class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-bracket">[</span><span class="logo-name">PCH</span><span class="logo-bracket">]</span>
+        <span class="logo-full">Portal Cursos Huaraz</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="cursos.html" class="nav-link">Cursos</a></li>
+        <li><a href="categorias.html" class="nav-link">Categorías</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="contacto.html" class="nav-link active">Contacto</a></li>
+      </ul>
+      <a href="cursos.html" class="nav-cta">Explorar Cursos</a>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <ul role="list">
+        <li><a href="index.html" class="mob-link" data-close>Inicio</a></li>
+        <li><a href="cursos.html" class="mob-link" data-close>Cursos</a></li>
+        <li><a href="categorias.html" class="mob-link" data-close>Categorías</a></li>
+        <li><a href="nosotros.html" class="mob-link" data-close>Nosotros</a></li>
+        <li><a href="contacto.html" class="mob-link" data-close>Contacto</a></li>
+        <li><a href="cursos.html" class="mob-cta" data-close>Explorar Cursos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-grid" aria-hidden="true"></div>
+    <div class="page-hero-glow" aria-hidden="true"></div>
+    <div class="page-hero-content">
+      <p class="page-breadcrumb fade-in-up delay-1"><a href="index.html">Inicio</a> &nbsp;/&nbsp; Contacto</p>
+      <h1 class="page-title fade-in-up delay-2">¿TIENES<br><span class="neon-cyan">PREGUNTAS</span>?</h1>
+      <p class="page-sub fade-in-up delay-3">Solicita información sobre los módulos y cursos disponibles en el portal</p>
+    </div>
+  </div>
+
+  <main class="section" style="background:var(--black); padding-top:60px;">
+    <div class="container">
+      <div class="contact-page-grid">
+
+        <!-- Panel de información -->
+        <div class="contact-info-panel reveal">
+          <div>
+            <h2 class="info-header">PONTE EN CONTACTO</h2>
+            <p class="info-desc">
+              Si tienes dudas sobre los cursos, quieres conocer los horarios o necesitas orientación sobre qué área estudiar, escríbenos. Estamos aquí para ayudarte.
+            </p>
+          </div>
+
+          <div class="info-item-card">
+            <span class="info-icon">📍</span>
+            <div>
+              <div class="info-label">UBICACIÓN</div>
+              <div class="info-value">CFP Huaraz — Ancash, Perú</div>
+            </div>
+          </div>
+
+          <div class="info-item-card">
+            <span class="info-icon">✉️</span>
+            <div>
+              <div class="info-label">CORREO</div>
+              <div class="info-value">Disponible próximamente</div>
+            </div>
+          </div>
+
+          <div class="info-item-card">
+            <span class="info-icon">📞</span>
+            <div>
+              <div class="info-label">TELÉFONO</div>
+              <div class="info-value">Disponible próximamente</div>
+            </div>
+          </div>
+
+          <div class="info-item-card">
+            <span class="info-icon">🕐</span>
+            <div>
+              <div class="info-label">HORARIO DE ATENCIÓN</div>
+              <div class="info-value">Lunes a Viernes · 8:00 am – 6:00 pm</div>
+            </div>
+          </div>
+
+          <div class="info-item-card">
+            <span class="info-icon">⚡</span>
+            <div>
+              <div class="info-label">RESPUESTA</div>
+              <div class="info-value">El equipo responderá tu consulta a la brevedad</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="contact-form-panel reveal">
+          <div class="form-panel-title">// ENVIAR MENSAJE</div>
+          <form class="contact-form" id="contact-form" novalidate aria-label="Formulario de contacto">
+            <div class="form-group">
+              <label for="cf-name">Nombre completo</label>
+              <input type="text" id="cf-name" name="nombre" placeholder="Tu nombre" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Correo electrónico</label>
+              <input type="email" id="cf-email" name="correo" placeholder="tucorreo@ejemplo.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="cf-phone">Teléfono (opcional)</label>
+              <input type="tel" id="cf-phone" name="telefono" placeholder="+51 000 000 000" autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="cf-course">Área de interés</label>
+              <select id="cf-course" name="area">
+                <option value="">— Selecciona un área —</option>
+                <option>Programación y Desarrollo Web</option>
+                <option>Inteligencia Artificial</option>
+                <option>Diseño Gráfico y Creatividad Digital</option>
+                <option>Marketing Digital</option>
+                <option>Ofimática y Productividad</option>
+                <option>Tecnología y Redes</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-msg">Mensaje</label>
+              <textarea id="cf-msg" name="mensaje" rows="5" placeholder="¿En qué podemos ayudarte? Cuéntanos tu consulta..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full" id="form-submit-btn">
+              ENVIAR MENSAJE <span aria-hidden="true">›</span>
+            </button>
+            <p class="form-note" style="margin-top:12px;">* El formulario es demostrativo. El backend será implementado por el equipo.</p>
+            <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;">
+        <a href="index.html" class="back-top reveal">← Volver al inicio</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><span class="logo-bracket">[</span><span class="logo-name">PCH</span><span class="logo-bracket">]</span></div>
+          <p class="footer-tagline">Portal Cursos Huaraz — CFP Huaraz</p>
+          <p class="footer-desc">Plataforma educativa digital orientada a la formación tecnológica y profesional en Huaraz, Perú.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Pie de página">
+          <h4 class="footer-heading">Navegación</h4>
+          <ul role="list">
+            <li><a href="index.html">Inicio</a></li><li><a href="cursos.html">Cursos</a></li>
+            <li><a href="categorias.html">Categorías</a></li><li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="footer-areas">
+          <h4 class="footer-heading">Áreas</h4>
+          <ul role="list">
+            <li>Programación Web</li><li>Inteligencia Artificial</li>
+            <li>Diseño Digital</li><li>Marketing Digital</li>
+            <li>Ofimática</li><li>Redes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Portal Cursos Huaraz — CFP Huaraz. Todos los derechos reservados.</span>
+        <span class="footer-status"><span class="status-dot"></span> SISTEMA ACTIVO</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
