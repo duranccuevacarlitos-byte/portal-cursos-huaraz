@@ -1,147 +1,1111 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contacto — Portal Cursos Huaraz. Solicita información sobre los cursos disponibles.">
-  <title>Contacto — Portal Cursos Huaraz</title>
+
+  <meta name="description" content="Contacto — Portal Cursos Huaraz. Solicita información sobre nuestros cursos tecnológicos.">
+  <meta name="theme-color" content="#050810">
+
+  <title>Contacto | Portal Cursos Huaraz</title>
+
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos principales -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <style>
+    /* =========================================
+       CONFIGURACIÓN GENERAL DE LA PÁGINA
+    ========================================= */
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .contact-page {
+      min-height: 100vh;
+      background: var(--black);
+    }
+
+    /* =========================================
+       HERO DE CONTACTO
+    ========================================= */
+
     .page-hero {
-      position: relative; min-height: 42vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: calc(var(--nav-h) + 60px) 20px 60px;
-      background: var(--dark); overflow: hidden; text-align: center;
+      position: relative;
+      min-height: 390px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--nav-h) + 60px) 20px 70px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(0, 229, 255, 0.08),
+          transparent 65%
+        ),
+        var(--black);
+      overflow: hidden;
+      text-align: center;
+      isolation: isolate;
     }
+
     .page-hero-grid {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(0,229,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,.04) 1px, transparent 1px);
-      background-size: 55px 55px; pointer-events: none;
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(
+          rgba(0, 229, 255, 0.045) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 229, 255, 0.045) 1px,
+          transparent 1px
+        );
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: -1;
     }
+
     .page-hero-glow {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      width: 600px; height: 300px;
-      background: radial-gradient(ellipse, rgba(0,229,255,.07) 0%, transparent 70%);
+      position: absolute;
+      width: min(700px, 100%);
+      height: 320px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(
+        ellipse,
+        rgba(0, 229, 255, 0.09),
+        transparent 70%
+      );
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+      width: 100%;
+    }
+
+    .page-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .page-breadcrumb a {
+      color: var(--neon-cyan);
+      transition: var(--transition);
+    }
+
+    .page-breadcrumb a:hover {
+      text-shadow: 0 0 12px var(--neon-cyan);
+    }
+
+    .page-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: 1.2;
+      letter-spacing: 0.06em;
+      margin-bottom: 22px;
+      overflow-wrap: anywhere;
+    }
+
+    .page-title span {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
+    }
+
+    .page-sub {
+      max-width: 600px;
+      margin: 0 auto;
+      color: rgba(232, 240, 255, 0.68);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .hero-line {
+      width: 100px;
+      height: 2px;
+      margin: 28px auto 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-green),
+        var(--neon-cyan),
+        transparent
+      );
+      box-shadow: 0 0 14px rgba(0, 255, 159, 0.3);
+    }
+
+    /* Esquinas digitales */
+
+    .hero-corner {
+      position: absolute;
+      width: 36px;
+      height: 36px;
       pointer-events: none;
     }
-    .page-hero-content { position: relative; z-index: 2; }
-    .page-breadcrumb { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .2em; color: var(--muted); margin-bottom: 16px; }
-    .page-breadcrumb a { color: var(--neon-cyan); transition: var(--transition); }
-    .page-breadcrumb a:hover { text-shadow: 0 0 10px var(--neon-cyan); }
-    .page-title { font-family: var(--font-head); font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: .08em; margin-bottom: 16px; line-height: 1.1; }
-    .page-sub { color: rgba(232,240,255,.6); font-size: .95rem; max-width: 500px; margin: 0 auto; }
 
-    /* Full-width contact layout */
+    .hero-corner.tl {
+      top: calc(var(--nav-h) + 15px);
+      left: 20px;
+      border-top: 2px solid var(--neon-cyan);
+      border-left: 2px solid var(--neon-cyan);
+    }
+
+    .hero-corner.tr {
+      top: calc(var(--nav-h) + 15px);
+      right: 20px;
+      border-top: 2px solid var(--neon-cyan);
+      border-right: 2px solid var(--neon-cyan);
+    }
+
+    .hero-corner.bl {
+      bottom: 18px;
+      left: 20px;
+      border-bottom: 2px solid var(--neon-green);
+      border-left: 2px solid var(--neon-green);
+    }
+
+    .hero-corner.br {
+      bottom: 18px;
+      right: 20px;
+      border-bottom: 2px solid var(--neon-green);
+      border-right: 2px solid var(--neon-green);
+    }
+
+    /* =========================================
+       SECCIÓN PRINCIPAL
+    ========================================= */
+
+    .contact-main {
+      position: relative;
+      padding: 80px 0 100px;
+      background:
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(0, 229, 255, 0.025),
+          transparent 35%
+        ),
+        var(--black);
+    }
+
+    .contact-section-heading {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .contact-section-tag {
+      display: inline-block;
+      color: var(--neon-cyan);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      margin-bottom: 15px;
+    }
+
+    .contact-section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .contact-section-description {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    /* =========================================
+       DISTRIBUCIÓN EN DOS COLUMNAS
+    ========================================= */
+
     .contact-page-grid {
       display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 40px;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 35px;
+      align-items: start;
     }
-    @media(max-width:768px){ .contact-page-grid { grid-template-columns: 1fr; } }
 
-    /* Info panel */
+    /* =========================================
+       PANEL DE INFORMACIÓN
+    ========================================= */
+
     .contact-info-panel {
       display: flex;
       flex-direction: column;
-      gap: 24px;
-    }
-    .info-header {
-      font-family: var(--font-head);
-      font-size: 1.2rem;
-      letter-spacing: .08em;
-      color: var(--neon-cyan);
-      margin-bottom: 8px;
-    }
-    .info-desc {
-      color: rgba(232,240,255,.6);
-      font-size: .88rem;
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-    .info-item-card {
-      background: var(--dark2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      transition: var(--transition);
-    }
-    .info-item-card:hover {
-      border-color: rgba(0,229,255,.3);
-      background: var(--dark3);
-    }
-    .info-icon { font-size: 1.5rem; flex-shrink: 0; }
-    .info-label {
-      font-family: var(--font-head);
-      font-size: .72rem;
-      letter-spacing: .15em;
-      color: var(--neon-cyan);
-      margin-bottom: 4px;
-    }
-    .info-value {
-      font-family: var(--font-mono);
-      font-size: .82rem;
-      color: var(--muted);
+      gap: 18px;
+      min-width: 0;
     }
 
-    /* Form panel */
-    .contact-form-panel {
+    .info-intro {
+      margin-bottom: 10px;
+    }
+
+    .info-header {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      letter-spacing: 0.06em;
+      color: var(--neon-cyan);
+      margin-bottom: 12px;
+    }
+
+    .info-desc {
+      color: rgba(232, 240, 255, 0.62);
+      font-size: 0.88rem;
+      line-height: 1.9;
+    }
+
+    .info-item-card {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 17px;
+      padding: 21px;
       background: var(--dark2);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 40px 36px;
+      transition:
+        transform var(--transition),
+        border-color var(--transition),
+        background var(--transition),
+        box-shadow var(--transition);
+      overflow-wrap: anywhere;
+    }
+
+    .info-item-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 15px;
+      bottom: 15px;
+      width: 2px;
+      background: var(--neon-cyan);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .info-item-card:hover {
+      transform: translateX(4px);
+      background: var(--dark3);
+      border-color: rgba(0, 229, 255, 0.35);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-item-card:hover::before {
+      opacity: 1;
+    }
+
+    .info-icon {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      background: rgba(0, 229, 255, 0.07);
+      border-radius: 8px;
+      color: var(--neon-cyan);
+      font-size: 1.1rem;
+    }
+
+    .info-item-card:nth-of-type(2) .info-icon {
+      color: var(--neon-green);
+      border-color: rgba(0, 255, 159, 0.2);
+      background: rgba(0, 255, 159, 0.06);
+    }
+
+    .info-content {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .info-label {
+      font-family: var(--font-head);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--neon-cyan);
+      margin-bottom: 7px;
+    }
+
+    .info-value {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* Estado del portal */
+
+    .system-status-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px;
+      margin-top: 5px;
+      border: 1px solid rgba(0, 255, 159, 0.2);
+      border-radius: var(--radius);
+      background: rgba(0, 255, 159, 0.035);
+    }
+
+    .system-status-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--neon-green);
+      background: rgba(0, 255, 159, 0.1);
+    }
+
+    .system-status-title {
+      font-family: var(--font-mono);
+      color: var(--neon-green);
+      font-size: 0.75rem;
+      margin-bottom: 5px;
+    }
+
+    .system-status-text {
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.6;
+    }
+
+    /* =========================================
+       PANEL DEL FORMULARIO
+    ========================================= */
+
+    .contact-form-panel {
       position: relative;
+      min-width: 0;
+      padding: 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(17, 27, 53, 0.55),
+          rgba(13, 21, 41, 0.96)
+        );
       overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     }
+
     .contact-form-panel::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
+      background: linear-gradient(
+        90deg,
+        var(--neon-cyan),
+        var(--neon-green),
+        var(--neon-cyan)
+      );
     }
+
+    .contact-form-panel::after {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: -100px;
+      right: -100px;
+      background: radial-gradient(
+        circle,
+        rgba(0, 229, 255, 0.07),
+        transparent 70%
+      );
+      pointer-events: none;
+    }
+
+    .form-panel-header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .form-header-icon {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0, 255, 159, 0.25);
+      border-radius: 8px;
+      background: rgba(0, 255, 159, 0.08);
+      color: var(--neon-green);
+      font-size: 1.1rem;
+    }
+
     .form-panel-title {
       font-family: var(--font-head);
       font-size: 1rem;
-      letter-spacing: .1em;
+      line-height: 1.7;
+      letter-spacing: 0.07em;
       color: var(--neon-green);
-      margin-bottom: 24px;
+      margin-bottom: 5px;
     }
-    @media(max-width:480px){ .contact-form-panel { padding: 28px 20px; } }
+
+    .form-panel-subtitle {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.7;
+    }
+
+    /* =========================================
+       CAMPOS DEL FORMULARIO
+    ========================================= */
+
+    .contact-form {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .form-group label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--neon-cyan);
+    }
+
+    .required-mark {
+      color: var(--neon-green);
+    }
+
+    .optional-label {
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0;
+    }
+
+    .input-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-wrap > i {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 0.85rem;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      color: var(--white);
+      background: rgba(5, 8, 16, 0.75);
+      border: 1px solid rgba(0, 229, 255, 0.16);
+      border-radius: 5px;
+      padding: 13px 14px;
+      font-family: var(--font-body);
+      font-size: 0.84rem;
+      line-height: 1.5;
+      outline: none;
+      transition:
+        border-color var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
+    }
+
+    .input-wrap input {
+      padding-left: 42px;
+    }
+
+    .form-group textarea {
+      min-height: 135px;
+      resize: vertical;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #586681;
+      opacity: 1;
+    }
+
+    .form-group select {
+      appearance: none;
+      cursor: pointer;
+      padding-right: 38px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2300e5ff' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+
+    .form-group select option {
+      color: var(--white);
+      background: var(--dark2);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--neon-green);
+      background: rgba(5, 8, 16, 0.95);
+      box-shadow: 0 0 0 3px rgba(0, 255, 159, 0.07);
+    }
+
+    .input-wrap:focus-within > i {
+      color: var(--neon-green);
+    }
+
+    .field-help {
+      color: var(--muted);
+      font-size: 0.68rem;
+      line-height: 1.6;
+    }
+
+    .character-count {
+      display: block;
+      margin-top: 6px;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    /* =========================================
+       BOTÓN DE ENVÍO
+    ========================================= */
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 49px;
+      padding: 13px 20px;
+      color: var(--black);
+      background: var(--neon-green);
+      border: 1px solid var(--neon-green);
+      border-radius: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      color: var(--black);
+      background: var(--neon-cyan);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 24px rgba(0, 229, 255, 0.22);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--neon-cyan);
+      outline-offset: 4px;
+    }
+
+    .btn-primary:disabled {
+      cursor: wait;
+      opacity: 0.7;
+      transform: none;
+    }
+
+    .form-submit-icon {
+      font-size: 1rem;
+      transition: transform var(--transition);
+    }
+
+    .btn-primary:hover .form-submit-icon {
+      transform: translateX(4px);
+    }
+
+    .form-privacy {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 0.7rem;
+      line-height: 1.7;
+    }
+
+    .form-privacy i {
+      color: var(--neon-green);
+      margin-top: 3px;
+    }
+
+    .form-note {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .form-feedback {
+      display: none;
+      padding: 13px 15px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .form-feedback.success {
+      display: block;
+      color: var(--neon-green);
+      border: 1px solid rgba(0, 255, 159, 0.25);
+      background: rgba(0, 255, 159, 0.07);
+    }
+
+    .form-feedback.error {
+      display: block;
+      color: var(--neon-red);
+      border: 1px solid rgba(255, 77, 109, 0.25);
+      background: rgba(255, 77, 109, 0.07);
+    }
+
+    /* =========================================
+       BLOQUE DE AYUDA INFERIOR
+    ========================================= */
+
+    .contact-bottom {
+      margin-top: 75px;
+      padding: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .contact-bottom-content {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .contact-bottom-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      border-radius: 10px;
+      background: rgba(0, 229, 255, 0.07);
+      color: var(--neon-cyan);
+      font-size: 1.3rem;
+    }
+
+    .contact-bottom-title {
+      font-family: var(--font-head);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--white);
+      margin-bottom: 5px;
+    }
+
+    .contact-bottom-text {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.7;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 20px;
+      flex-shrink: 0;
+      color: var(--neon-cyan);
+      background: rgba(0, 229, 255, 0.04);
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      border-radius: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      color: var(--black);
+      background: var(--neon-cyan);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    .footer {
+      position: relative;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-bottom {
+      gap: 15px;
+    }
 
     .back-top {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-mono); font-size: .72rem;
-      color: var(--muted); transition: var(--transition); margin-top: 48px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      transition: var(--transition);
     }
-    .back-top:hover { color: var(--neon-cyan); }
+
+    .back-top:hover {
+      color: var(--neon-cyan);
+    }
+
+    /* =========================================
+       ANIMACIONES
+    ========================================= */
+
+    .fade-in-up {
+      animation: contactFadeUp 0.7s ease both;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.25s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes contactFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================
+       RESPONSIVE: TABLET
+    ========================================= */
+
+    @media (max-width: 900px) {
+      .contact-page-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 35px;
+      }
+
+      .contact-info-panel {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+      }
+
+      .info-intro {
+        grid-column: 1 / -1;
+      }
+
+      .system-status-card {
+        grid-column: 1 / -1;
+      }
+
+      .info-item-card {
+        padding: 17px;
+      }
+
+      .contact-form-panel {
+        padding: 32px;
+      }
+    }
+
+    /* =========================================
+       RESPONSIVE: CELULARES
+    ========================================= */
+
+    @media (max-width: 600px) {
+      .page-hero {
+        min-height: 340px;
+        padding: calc(var(--nav-h) + 48px) 18px 55px;
+      }
+
+      .page-title {
+        font-size: clamp(1.65rem, 8vw, 2.6rem);
+        letter-spacing: 0.025em;
+      }
+
+      .page-sub {
+        font-size: 0.85rem;
+      }
+
+      .hero-corner {
+        width: 23px;
+        height: 23px;
+      }
+
+      .hero-corner.tl {
+        left: 12px;
+      }
+
+      .hero-corner.tr {
+        right: 12px;
+      }
+
+      .hero-corner.bl {
+        left: 12px;
+      }
+
+      .hero-corner.br {
+        right: 12px;
+      }
+
+      .contact-main {
+        padding: 55px 0 65px;
+      }
+
+      .contact-section-heading {
+        margin-bottom: 35px;
+      }
+
+      .contact-section-title {
+        font-size: 1.5rem;
+      }
+
+      .contact-section-description {
+        font-size: 0.83rem;
+      }
+
+      .contact-info-panel {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .info-intro,
+      .system-status-card {
+        grid-column: auto;
+      }
+
+      .info-item-card {
+        padding: 17px;
+      }
+
+      .contact-form-panel {
+        padding: 25px 18px;
+      }
+
+      .form-panel-header {
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .form-panel-title {
+        font-size: 0.9rem;
+      }
+
+      .form-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      .contact-form {
+        gap: 19px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-size: 16px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+      }
+
+      .input-wrap input {
+        padding-left: 42px;
+      }
+
+      .btn-primary {
+        width: 100%;
+        min-height: 48px;
+        font-size: 0.73rem;
+      }
+
+      .contact-bottom {
+        margin-top: 45px;
+        padding: 23px 18px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .contact-bottom-content {
+        align-items: flex-start;
+        gap: 13px;
+      }
+
+      .contact-bottom-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+      }
+
+      .contact-bottom-title {
+        font-size: 0.8rem;
+      }
+
+      .contact-bottom-text {
+        font-size: 0.76rem;
+      }
+
+      .btn-secondary {
+        width: 100%;
+        text-align: center;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .container {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .contact-form-panel {
+        padding: 22px 14px;
+      }
+
+      .page-title {
+        font-size: 1.55rem;
+      }
+
+      .info-icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* Accesibilidad */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in-up {
+        animation: none;
+      }
+
+      .info-item-card,
+      .btn-primary,
+      .btn-secondary {
+        transition: none;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-  <nav id="navbar" class="navbar" role="navigation" aria-label="Navegación principal">
+  <!-- =========================================
+       BARRA DE NAVEGACIÓN
+  ========================================= -->
+
+  <nav
+    id="navbar"
+    class="navbar"
+    role="navigation"
+    aria-label="Navegación principal"
+  >
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <span class="logo-bracket">[</span><span class="logo-name">PCH</span><span class="logo-bracket">]</span>
+
+      <a href="index.html" class="nav-logo" aria-label="Portal Cursos Huaraz, inicio">
+        <span class="logo-bracket">[</span>
+        <span class="logo-name">PCH</span>
+        <span class="logo-bracket">]</span>
         <span class="logo-full">Portal Cursos Huaraz</span>
       </a>
+
       <ul class="nav-links" role="list">
         <li><a href="index.html" class="nav-link">Inicio</a></li>
         <li><a href="cursos.html" class="nav-link">Cursos</a></li>
         <li><a href="categorias.html" class="nav-link">Categorías</a></li>
         <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
-        <li><a href="contacto.html" class="nav-link active">Contacto</a></li>
+        <li><a href="contacto.html" class="nav-link active" aria-current="page">Contacto</a></li>
       </ul>
-      <a href="cursos.html" class="nav-cta">Explorar Cursos</a>
-      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+
+      <a href="cursos.html" class="nav-cta">
+        Explorar Cursos
+      </a>
+
+      <button
+        id="menu-toggle"
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
       </button>
+
     </div>
+
     <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
       <ul role="list">
         <li><a href="index.html" class="mob-link" data-close>Inicio</a></li>
@@ -154,151 +1118,856 @@
     </div>
   </nav>
 
-  <div class="page-hero">
+
+  <!-- =========================================
+       ENCABEZADO PRINCIPAL
+  ========================================= -->
+
+  <header class="page-hero">
+
     <div class="page-hero-grid" aria-hidden="true"></div>
     <div class="page-hero-glow" aria-hidden="true"></div>
-    <div class="page-hero-content">
-      <p class="page-breadcrumb fade-in-up delay-1"><a href="index.html">Inicio</a> &nbsp;/&nbsp; Contacto</p>
-      <h1 class="page-title fade-in-up delay-2">¿TIENES<br><span class="neon-cyan">PREGUNTAS</span>?</h1>
-      <p class="page-sub fade-in-up delay-3">Solicita información sobre los módulos y cursos disponibles en el portal</p>
-    </div>
-  </div>
 
-  <main class="section" style="background:var(--black); padding-top:60px;">
+    <span class="hero-corner tl" aria-hidden="true"></span>
+    <span class="hero-corner tr" aria-hidden="true"></span>
+    <span class="hero-corner bl" aria-hidden="true"></span>
+    <span class="hero-corner br" aria-hidden="true"></span>
+
+    <div class="page-hero-content">
+
+      <p class="page-breadcrumb fade-in-up delay-1">
+        <a href="index.html">INICIO</a>
+        &nbsp; / &nbsp;
+        CONTACTO
+      </p>
+
+      <h1 class="page-title fade-in-up delay-2">
+        ¿TIENES<br>
+        <span>PREGUNTAS?</span>
+      </h1>
+
+      <p class="page-sub fade-in-up delay-3">
+        Estamos aquí para ayudarte. Escríbenos y descubre las
+        oportunidades de formación tecnológica que ofrece
+        Portal Cursos Huaraz.
+      </p>
+
+      <div class="hero-line" aria-hidden="true"></div>
+
+    </div>
+  </header>
+
+
+  <!-- =========================================
+       CONTENIDO DE CONTACTO
+  ========================================= -->
+
+  <main class="contact-main">
+
     <div class="container">
+
+      <div class="contact-section-heading reveal">
+
+        <span class="contact-section-tag">
+          &lt; CONTACTO / INFORMACIÓN &gt;
+        </span>
+
+        <h2 class="contact-section-title">
+          CONECTA CON <span class="neon-green">NOSOTROS</span>
+        </h2>
+
+        <p class="contact-section-description">
+          ¿Tienes dudas sobre nuestros cursos, las áreas de estudio
+          o el funcionamiento del portal? Revisa nuestra información
+          y utiliza el formulario para escribir tu consulta.
+        </p>
+
+      </div>
+
+
       <div class="contact-page-grid">
 
-        <!-- Panel de información -->
-        <div class="contact-info-panel reveal">
-          <div>
-            <h2 class="info-header">PONTE EN CONTACTO</h2>
+        <!-- =====================================
+             COLUMNA DE INFORMACIÓN
+        ====================================== -->
+
+        <section class="contact-info-panel reveal" aria-labelledby="info-title">
+
+          <div class="info-intro">
+
+            <h2 class="info-header" id="info-title">
+              <i class="fa-solid fa-satellite-dish"></i>
+              PONTE EN CONTACTO
+            </h2>
+
             <p class="info-desc">
-              Si tienes dudas sobre los cursos, quieres conocer los horarios o necesitas orientación sobre qué área estudiar, escríbenos. Estamos aquí para ayudarte.
+              Queremos ayudarte a encontrar información sobre
+              las oportunidades educativas del portal. Consulta
+              los datos disponibles y envíanos un mensaje con
+              tus preguntas.
             </p>
+
           </div>
+
+
+          <!-- Ubicación -->
 
           <div class="info-item-card">
-            <span class="info-icon">📍</span>
-            <div>
-              <div class="info-label">UBICACIÓN</div>
-              <div class="info-value">CFP Huaraz — Ancash, Perú</div>
+
+            <div class="info-icon" aria-hidden="true">
+              <i class="fa-solid fa-location-dot"></i>
             </div>
+
+            <div class="info-content">
+
+              <h3 class="info-label">UBICACIÓN</h3>
+
+              <p class="info-value">
+                CFP Huaraz<br>
+                Áncash, Perú
+              </p>
+
+            </div>
+
           </div>
+
+
+          <!-- Correo -->
 
           <div class="info-item-card">
-            <span class="info-icon">✉️</span>
-            <div>
-              <div class="info-label">CORREO</div>
-              <div class="info-value">Disponible próximamente</div>
+
+            <div class="info-icon" aria-hidden="true">
+              <i class="fa-solid fa-envelope"></i>
             </div>
+
+            <div class="info-content">
+
+              <h3 class="info-label">CORREO ELECTRÓNICO</h3>
+
+              <p class="info-value">
+                Disponible próximamente
+              </p>
+
+            </div>
+
           </div>
+
+
+          <!-- Teléfono -->
 
           <div class="info-item-card">
-            <span class="info-icon">📞</span>
-            <div>
-              <div class="info-label">TELÉFONO</div>
-              <div class="info-value">Disponible próximamente</div>
+
+            <div class="info-icon" aria-hidden="true">
+              <i class="fa-solid fa-phone"></i>
             </div>
+
+            <div class="info-content">
+
+              <h3 class="info-label">TELÉFONO</h3>
+
+              <p class="info-value">
+                Disponible próximamente
+              </p>
+
+            </div>
+
           </div>
+
+
+          <!-- Horario -->
 
           <div class="info-item-card">
-            <span class="info-icon">🕐</span>
-            <div>
-              <div class="info-label">HORARIO DE ATENCIÓN</div>
-              <div class="info-value">Lunes a Viernes · 8:00 am – 6:00 pm</div>
+
+            <div class="info-icon" aria-hidden="true">
+              <i class="fa-regular fa-clock"></i>
             </div>
+
+            <div class="info-content">
+
+              <h3 class="info-label">HORARIO DE ATENCIÓN</h3>
+
+              <p class="info-value">
+                Lunes a viernes<br>
+                8:00 a. m. – 6:00 p. m.
+              </p>
+
+            </div>
+
           </div>
+
+
+          <!-- Respuesta -->
 
           <div class="info-item-card">
-            <span class="info-icon">⚡</span>
-            <div>
-              <div class="info-label">RESPUESTA</div>
-              <div class="info-value">El equipo responderá tu consulta a la brevedad</div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Formulario -->
-        <div class="contact-form-panel reveal">
-          <div class="form-panel-title">// ENVIAR MENSAJE</div>
-          <form class="contact-form" id="contact-form" novalidate aria-label="Formulario de contacto">
-            <div class="form-group">
-              <label for="cf-name">Nombre completo</label>
-              <input type="text" id="cf-name" name="nombre" placeholder="Tu nombre" required autocomplete="name">
+            <div class="info-icon" aria-hidden="true">
+              <i class="fa-solid fa-headset"></i>
             </div>
-            <div class="form-group">
-              <label for="cf-email">Correo electrónico</label>
-              <input type="email" id="cf-email" name="correo" placeholder="tucorreo@ejemplo.com" required autocomplete="email">
+
+            <div class="info-content">
+
+              <h3 class="info-label">ATENCIÓN AL USUARIO</h3>
+
+              <p class="info-value">
+                Escríbenos mediante el formulario
+                para compartir tu consulta.
+              </p>
+
             </div>
-            <div class="form-group">
-              <label for="cf-phone">Teléfono (opcional)</label>
-              <input type="tel" id="cf-phone" name="telefono" placeholder="+51 000 000 000" autocomplete="tel">
+
+          </div>
+
+
+          <!-- Estado visual -->
+
+          <div class="system-status-card">
+
+            <div class="system-status-icon" aria-hidden="true">
+              <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <div class="form-group">
-              <label for="cf-course">Área de interés</label>
-              <select id="cf-course" name="area">
-                <option value="">— Selecciona un área —</option>
-                <option>Programación y Desarrollo Web</option>
-                <option>Inteligencia Artificial</option>
-                <option>Diseño Gráfico y Creatividad Digital</option>
-                <option>Marketing Digital</option>
-                <option>Ofimática y Productividad</option>
-                <option>Tecnología y Redes</option>
-                <option>Otro</option>
-              </select>
+
+            <div>
+
+              <h3 class="system-status-title">
+                PORTAL EDUCATIVO
+              </h3>
+
+              <p class="system-status-text">
+                Plataforma orientada al aprendizaje y a la
+                formación tecnológica.
+              </p>
+
             </div>
-            <div class="form-group">
-              <label for="cf-msg">Mensaje</label>
-              <textarea id="cf-msg" name="mensaje" rows="5" placeholder="¿En qué podemos ayudarte? Cuéntanos tu consulta..."></textarea>
+
+          </div>
+
+        </section>
+
+
+        <!-- =====================================
+             COLUMNA DEL FORMULARIO
+        ====================================== -->
+
+        <section class="contact-form-panel reveal" aria-labelledby="form-title">
+
+          <div class="form-panel-header">
+
+            <div class="form-header-icon" aria-hidden="true">
+              <i class="fa-solid fa-paper-plane"></i>
             </div>
-            <button type="submit" class="btn-primary w-full" id="form-submit-btn">
-              ENVIAR MENSAJE <span aria-hidden="true">›</span>
+
+            <div>
+
+              <h2 class="form-panel-title" id="form-title">
+                // ENVIAR MENSAJE
+              </h2>
+
+              <p class="form-panel-subtitle">
+                Completa los siguientes campos para
+                preparar tu consulta.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <form
+            class="contact-form"
+            id="contact-form"
+            aria-label="Formulario de contacto"
+          >
+
+            <!-- Nombre y correo -->
+
+            <div class="form-row">
+
+              <div class="form-group">
+
+                <label for="cf-name">
+                  Nombre completo
+                  <span class="required-mark">*</span>
+                </label>
+
+                <div class="input-wrap">
+
+                  <i class="fa-regular fa-user" aria-hidden="true"></i>
+
+                  <input
+                    type="text"
+                    id="cf-name"
+                    name="nombre"
+                    placeholder="Tu nombre completo"
+                    autocomplete="name"
+                    maxlength="100"
+                    required
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="cf-email">
+                  Correo electrónico
+                  <span class="required-mark">*</span>
+                </label>
+
+                <div class="input-wrap">
+
+                  <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+
+                  <input
+                    type="email"
+                    id="cf-email"
+                    name="correo"
+                    placeholder="tucorreo@ejemplo.com"
+                    autocomplete="email"
+                    maxlength="150"
+                    required
+                  >
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- Teléfono y área -->
+
+            <div class="form-row">
+
+              <div class="form-group">
+
+                <label for="cf-phone">
+                  Teléfono
+                  <span class="optional-label">(opcional)</span>
+                </label>
+
+                <div class="input-wrap">
+
+                  <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
+
+                  <input
+                    type="tel"
+                    id="cf-phone"
+                    name="telefono"
+                    placeholder="+51 000 000 000"
+                    autocomplete="tel"
+                    maxlength="20"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="cf-course">
+                  Área de interés
+                </label>
+
+                <select id="cf-course" name="area">
+
+                  <option value="">Selecciona un área</option>
+
+                  <option value="Programación y Desarrollo Web">
+                    Programación y Desarrollo Web
+                  </option>
+
+                  <option value="Inteligencia Artificial">
+                    Inteligencia Artificial
+                  </option>
+
+                  <option value="Diseño Gráfico y Creatividad Digital">
+                    Diseño Gráfico y Creatividad Digital
+                  </option>
+
+                  <option value="Marketing Digital">
+                    Marketing Digital
+                  </option>
+
+                  <option value="Ofimática y Productividad">
+                    Ofimática y Productividad
+                  </option>
+
+                  <option value="Tecnología y Redes">
+                    Tecnología y Redes
+                  </option>
+
+                  <option value="Otro">
+                    Otro
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <!-- Asunto -->
+
+            <div class="form-group">
+
+              <label for="cf-subject">
+                Asunto
+              </label>
+
+              <input
+                type="text"
+                id="cf-subject"
+                name="asunto"
+                placeholder="¿Sobre qué deseas consultar?"
+                maxlength="150"
+              >
+
+            </div>
+
+
+            <!-- Mensaje -->
+
+            <div class="form-group">
+
+              <label for="cf-msg">
+                Tu mensaje
+                <span class="required-mark">*</span>
+              </label>
+
+              <textarea
+                id="cf-msg"
+                name="mensaje"
+                rows="5"
+                maxlength="1000"
+                placeholder="Escribe aquí tu consulta..."
+                required
+              ></textarea>
+
+              <span class="character-count" id="character-count">
+                0 / 1000 caracteres
+              </span>
+
+            </div>
+
+
+            <!-- Información -->
+
+            <p class="form-privacy">
+
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>
+                Los campos marcados con asterisco son obligatorios.
+                No compartas contraseñas ni información personal sensible.
+              </span>
+
+            </p>
+
+
+            <!-- Botón -->
+
+            <button
+              type="submit"
+              class="btn-primary w-full"
+              id="form-submit-btn"
+            >
+
+              <span>PREPARAR MENSAJE</span>
+
+              <i
+                class="fa-solid fa-arrow-right form-submit-icon"
+                aria-hidden="true"
+              ></i>
+
             </button>
-            <p class="form-note" style="margin-top:12px;">* El formulario es demostrativo. El backend será implementado por el equipo.</p>
-            <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
+
+
+            <!-- Aviso del funcionamiento -->
+
+            <p class="form-note">
+              <i class="fa-solid fa-code" aria-hidden="true"></i>
+              Formulario de demostración. El envío real requiere
+              configurar un servidor o servicio de correo.
+            </p>
+
+
+            <!-- Mensajes de resultado -->
+
+            <div
+              id="form-feedback"
+              class="form-feedback"
+              role="status"
+              aria-live="polite"
+            ></div>
+
           </form>
+
+        </section>
+
+      </div>
+
+
+      <!-- =====================================
+           BLOQUE INFERIOR
+      ====================================== -->
+
+      <section class="contact-bottom reveal">
+
+        <div class="contact-bottom-content">
+
+          <div class="contact-bottom-icon" aria-hidden="true">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+
+          <div>
+
+            <h2 class="contact-bottom-title">
+              ¿LISTO PARA SEGUIR APRENDIENDO?
+            </h2>
+
+            <p class="contact-bottom-text">
+              Explora los cursos y descubre nuevas
+              oportunidades de formación.
+            </p>
+
+          </div>
+
         </div>
 
+        <a href="cursos.html" class="btn-secondary">
+          <i class="fa-solid fa-terminal" aria-hidden="true"></i>
+          EXPLORAR CURSOS
+        </a>
+
+      </section>
+
+
+      <!-- Volver al inicio -->
+
+      <div style="text-align: center; margin-top: 35px;">
+
+        <a href="index.html" class="back-top">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+          VOLVER AL INICIO
+        </a>
+
       </div>
 
-      <div style="text-align:center;">
-        <a href="index.html" class="back-top reveal">← Volver al inicio</a>
-      </div>
     </div>
+
   </main>
 
+
+  <!-- =========================================
+       PIE DE PÁGINA
+  ========================================= -->
+
   <footer class="footer">
+
     <div class="container">
+
       <div class="footer-grid">
+
+        <!-- Marca -->
+
         <div class="footer-brand">
-          <div class="footer-logo"><span class="logo-bracket">[</span><span class="logo-name">PCH</span><span class="logo-bracket">]</span></div>
-          <p class="footer-tagline">Portal Cursos Huaraz — CFP Huaraz</p>
-          <p class="footer-desc">Plataforma educativa digital orientada a la formación tecnológica y profesional en Huaraz, Perú.</p>
+
+          <a href="index.html" class="footer-logo">
+
+            <span class="logo-bracket">[</span>
+            <span class="logo-name">PCH</span>
+            <span class="logo-bracket">]</span>
+
+          </a>
+
+          <p class="footer-tagline">
+            Portal Cursos Huaraz — CFP Huaraz
+          </p>
+
+          <p class="footer-desc">
+            Plataforma educativa digital orientada a la
+            formación tecnológica y profesional en Huaraz, Perú.
+          </p>
+
         </div>
-        <nav class="footer-nav" aria-label="Pie de página">
-          <h4 class="footer-heading">Navegación</h4>
+
+
+        <!-- Navegación -->
+
+        <nav class="footer-nav" aria-label="Navegación del pie de página">
+
+          <h3 class="footer-heading">
+            Navegación
+          </h3>
+
           <ul role="list">
-            <li><a href="index.html">Inicio</a></li><li><a href="cursos.html">Cursos</a></li>
-            <li><a href="categorias.html">Categorías</a></li><li><a href="nosotros.html">Nosotros</a></li>
+
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="categorias.html">Categorías</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+
           </ul>
+
         </nav>
+
+
+        <!-- Áreas -->
+
         <div class="footer-areas">
-          <h4 class="footer-heading">Áreas</h4>
+
+          <h3 class="footer-heading">
+            Áreas de formación
+          </h3>
+
           <ul role="list">
-            <li>Programación Web</li><li>Inteligencia Artificial</li>
-            <li>Diseño Digital</li><li>Marketing Digital</li>
-            <li>Ofimática</li><li>Redes</li>
+
+            <li>Programación Web</li>
+            <li>Inteligencia Artificial</li>
+            <li>Diseño Digital</li>
+            <li>Marketing Digital</li>
+            <li>Ofimática</li>
+            <li>Redes y Tecnología</li>
+
           </ul>
+
         </div>
+
       </div>
+
+
+      <!-- Pie inferior -->
+
       <div class="footer-bottom">
-        <span>© 2024 Portal Cursos Huaraz — CFP Huaraz. Todos los derechos reservados.</span>
-        <span class="footer-status"><span class="status-dot"></span> SISTEMA ACTIVO</span>
+
+        <span>
+          © <span id="current-year">2026</span>
+          Portal Cursos Huaraz. Todos los derechos reservados.
+        </span>
+
+        <span class="footer-status">
+
+          <span class="status-dot"></span>
+
+          PORTAL EDUCATIVO
+
+        </span>
+
       </div>
+
     </div>
+
   </footer>
 
+
+  <!-- =========================================
+       JAVASCRIPT DE ESTA PÁGINA
+  ========================================= -->
+
   <script src="script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      /* Año del pie de página */
+
+      const currentYear = document.getElementById("current-year");
+
+      if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+      }
+
+
+      /* Contador de caracteres */
+
+      const messageField = document.getElementById("cf-msg");
+      const characterCount = document.getElementById("character-count");
+
+      if (messageField && characterCount) {
+
+        function updateCharacterCount() {
+          characterCount.textContent =
+            messageField.value.length + " / 1000 caracteres";
+        }
+
+        messageField.addEventListener("input", updateCharacterCount);
+
+        updateCharacterCount();
+
+      }
+
+
+      /* Formulario demostrativo */
+
+      const contactForm = document.getElementById("contact-form");
+      const feedback = document.getElementById("form-feedback");
+      const submitButton = document.getElementById("form-submit-btn");
+
+      if (contactForm && feedback && submitButton) {
+
+        contactForm.addEventListener("submit", function (event) {
+
+          event.preventDefault();
+
+          feedback.className = "form-feedback";
+          feedback.textContent = "";
+
+          if (!contactForm.checkValidity()) {
+
+            contactForm.reportValidity();
+
+            return;
+
+          }
+
+          const nombre = document.getElementById("cf-name").value.trim();
+          const correo = document.getElementById("cf-email").value.trim();
+          const telefono = document.getElementById("cf-phone").value.trim();
+          const area = document.getElementById("cf-course").value;
+          const asunto = document.getElementById("cf-subject").value.trim();
+          const mensaje = document.getElementById("cf-msg").value.trim();
+
+          if (!nombre || !correo || !mensaje) {
+
+            feedback.classList.add("error");
+            feedback.textContent =
+              "Completa tu nombre, correo electrónico y mensaje.";
+
+            return;
+
+          }
+
+          /*
+            Esta página todavía no envía datos a un servidor.
+            Por ahora permite preparar un mensaje para revisarlo
+            y abrir el programa de correo del dispositivo.
+          */
+
+          const contenido = [
+            "CONSULTA — PORTAL CURSOS HUARAZ",
+            "",
+            "Nombre: " + nombre,
+            "Correo: " + correo,
+            "Teléfono: " + (telefono || "No indicado"),
+            "Área: " + (area || "No especificada"),
+            "Asunto: " + (asunto || "Consulta general"),
+            "",
+            "Mensaje:",
+            mensaje
+          ].join("\n");
+
+          feedback.classList.add("success");
+          feedback.textContent =
+            "Tu mensaje está preparado. Para enviarlo, necesitas configurar un correo de destino en el proyecto.";
+
+          /*
+            No se abre mailto automáticamente porque todavía
+            no se ha configurado una dirección real de destino.
+            Tampoco se afirma que el mensaje fue enviado.
+          */
+
+          const copyButton = document.createElement("button");
+
+          copyButton.type = "button";
+          copyButton.className = "btn-secondary";
+          copyButton.style.marginTop = "12px";
+          copyButton.style.width = "100%";
+          copyButton.innerHTML =
+            '<i class="fa-regular fa-copy" aria-hidden="true"></i> COPIAR MENSAJE';
+
+          feedback.appendChild(document.createElement("br"));
+          feedback.appendChild(copyButton);
+
+          copyButton.addEventListener("click", async function () {
+
+            try {
+
+              await navigator.clipboard.writeText(contenido);
+
+              copyButton.innerHTML =
+                '<i class="fa-solid fa-check" aria-hidden="true"></i> MENSAJE COPIADO';
+
+            } catch (error) {
+
+              const temporaryArea = document.createElement("textarea");
+
+              temporaryArea.value = contenido;
+              temporaryArea.setAttribute("readonly", "");
+              temporaryArea.style.position = "fixed";
+              temporaryArea.style.opacity = "0";
+
+              document.body.appendChild(temporaryArea);
+
+              temporaryArea.select();
+
+              const copied = document.execCommand("copy");
+
+              temporaryArea.remove();
+
+              if (copied) {
+
+                copyButton.textContent = "MENSAJE COPIADO";
+
+              } else {
+
+                feedback.textContent =
+                  "No se pudo copiar automáticamente. Selecciona y copia el mensaje manualmente.";
+
+              }
+
+            }
+
+          });
+
+        });
+
+      }
+
+
+      /* Animación de aparición al desplazarse */
+
+      const revealElements = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window) {
+
+        const observer = new IntersectionObserver(function (entries) {
+
+          entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              observer.unobserve(entry.target);
+
+            }
+
+          });
+
+        }, {
+          threshold: 0.08
+        });
+
+        revealElements.forEach(function (element) {
+          observer.observe(element);
+        });
+
+      } else {
+
+        revealElements.forEach(function (element) {
+          element.classList.add("visible");
+        });
+
+      }
+
+    });
+  </script>
+
 </body>
 </html>
+```
