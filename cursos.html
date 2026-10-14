@@ -303,6 +303,38 @@
       will-change: opacity, transform;
     }
 
+    /* NEW: estilos para filtros avanzados */
+    .extra-filters {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 12px 0 28px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .extra-filters label {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--muted);
+      margin-right: 6px;
+    }
+    .extra-filters select {
+      background: rgba(4,10,20,0.85);
+      border: 1px solid rgba(255,255,255,0.04);
+      color: var(--light);
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      min-width: 160px;
+      transition: var(--transition);
+    }
+    .extra-filters select:focus {
+      border-color: var(--neon-green);
+      box-shadow: 0 4px 20px rgba(0,255,159,0.06);
+      outline: none;
+    }
+
     @media (max-width: 650px) {
       .terminal-search-box {
         flex-direction: column;
@@ -317,6 +349,9 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+      }
+      .extra-filters {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -425,9 +460,31 @@
         <button class="filter-btn" data-filter="redes">Redes</button>
       </div>
 
+      <!-- NUEVOS FILTROS: Prerrequisitos y Precio -->
+      <div class="extra-filters reveal">
+        <div>
+          <label for="prereq-filter">Prerrequisitos</label>
+          <select id="prereq-filter" aria-label="Filtrar por prerrequisitos">
+            <option value="all">Todos</option>
+            <option value="no">Sin prerrequisitos</option>
+            <option value="yes">Con prerrequisitos</option>
+          </select>
+        </div>
+        <div>
+          <label for="price-filter">Rango de precio</label>
+          <select id="price-filter" aria-label="Filtrar por rango de precio">
+            <option value="all">Todos</option>
+            <option value="free">Gratis</option>
+            <option value="low">Hasta S/ 50</option>
+            <option value="medium">S/ 51 - S/ 100</option>
+            <option value="high">Más de S/ 100</option>
+          </select>
+        </div>
+      </div>
+
       <div class="courses-grid">
 
-        <article class="course-card reveal" data-cat="web" tabindex="0">
+        <article class="course-card reveal" data-cat="web" data-price="120" data-prereq="no" tabindex="0">
           <div class="card-glow"></div>
           <div class="card-corner tl"></div><div class="card-corner br"></div>
           <div class="card-header">
@@ -443,12 +500,12 @@
           <a href="contacto.html" class="card-btn">VER MÓDULO ›</a>
         </article>
 
-        <article class="course-card reveal" data-cat="ia" tabindex="0">
+        <article class="course-card reveal" data-cat="ia" data-price="200" data-prereq="yes" tabindex="0">
           <div class="card-glow"></div>
           <div class="card-corner tl"></div><div class="card-corner br"></div>
           <div class="card-header">
             <div class="card-icon ai">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2[...]
             </div>
             <span class="card-tag ai-tag">IA</span>
           </div>
@@ -459,12 +516,12 @@
           <a href="contacto.html" class="card-btn">VER MÓDULO ›</a>
         </article>
 
-        <article class="course-card reveal" data-cat="diseno" tabindex="0">
+        <article class="course-card reveal" data-cat="diseno" data-price="80" data-prereq="no" tabindex="0">
           <div class="card-glow"></div>
           <div class="card-corner tl"></div><div class="card-corner br"></div>
           <div class="card-header">
             <div class="card-icon design">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="15" y2="9"></line></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="15"[...]
             </div>
             <span class="card-tag design-tag">DISEÑO</span>
           </div>
@@ -474,7 +531,7 @@
           <a href="contacto.html" class="card-btn">VER MÓDULO ›</a>
         </article>
 
-        <article class="course-card reveal" data-cat="marketing" tabindex="0">
+        <article class="course-card reveal" data-cat="marketing" data-price="60" data-prereq="no" tabindex="0">
           <div class="card-glow"></div>
           <div class="card-corner tl"></div><div class="card-corner br"></div>
           <div class="card-header">
@@ -489,12 +546,12 @@
           <a href="contacto.html" class="card-btn">VER MÓDULO ›</a>
         </article>
 
-        <article class="course-card reveal" data-cat="ofimatica" tabindex="0">
+        <article class="course-card reveal" data-cat="ofimatica" data-price="40" data-prereq="no" tabindex="0">
           <div class="card-glow"></div>
           <div class="card-corner tl"></div><div class="card-corner br"></div>
           <div class="card-header">
             <div class="card-icon office">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="3" x2="8" y2="21"></line></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><lin[...]
             </div>
             <span class="card-tag ofi-tag">OFIMÁTICA</span>
           </div>
@@ -504,12 +561,12 @@
           <a href="contacto.html" class="card-btn">VER MÓDULO ›</a>
         </article>
 
-        <article class="course-card reveal" data-cat="redes" tabindex="0">
+        <article class="course-card reveal" data-cat="redes" data-price="150" data-prereq="no" tabindex="0">
           <div class="card-glow"></div>
           <div class="card-corner tl"></div><div class="card-corner br"></div>
           <div class="card-header">
             <div class="card-icon network">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="5" r="3"></circle><circle cx="5" cy="19" r="3"></circle><circle cx="19" cy="19" r="3"></circle><path d="M7.5 16.5L10.5 13.5M16.5 16.5L13.5 13.5"></path></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="5" r="3"></circle><circle cx="5" cy="19" r="3"></circle><circle cx="19" cy="19" r="3"></[...]
             </div>
             <span class="card-tag net-tag">REDES</span>
           </div>
@@ -590,6 +647,10 @@
       const tagChips = document.querySelectorAll('.search-tag-chip');
       const courseCards = document.querySelectorAll('.course-card');
 
+      // nuevos controles
+      const prereqFilter = document.getElementById('prereq-filter');
+      const priceFilter = document.getElementById('price-filter');
+
       if (!searchInput || !courseCards.length) return;
 
       let currentCategory = 'all';
@@ -610,9 +671,13 @@
         const tag = card.querySelector('.card-tag')?.textContent || '';
         const meta = card.querySelector('.card-meta')?.textContent || '';
         const cat = card.dataset.cat || '';
+        const price = parseInt(card.dataset.price || '0', 10);
+        const prereq = (card.dataset.prereq === 'yes') ? 'yes' : 'no';
         return {
           element: card,
           cat: cat,
+          price: price,
+          prereq: prereq,
           searchable: normalizeText(`${title} ${desc} ${tag} ${meta} ${cat}`)
         };
       });
@@ -621,6 +686,9 @@
       function applyFilters() {
         const query = normalizeText(searchInput.value);
         let visibleCount = 0;
+
+        const selectedPrereq = prereqFilter ? prereqFilter.value : 'all';
+        const selectedPrice = priceFilter ? priceFilter.value : 'all';
 
         // Control del botón limpiar
         if (searchInput.value.trim().length > 0) {
@@ -633,7 +701,22 @@
           const matchesCategory = (currentCategory === 'all' || item.cat === currentCategory);
           const matchesQuery = query === '' || item.searchable.includes(query);
 
-          if (matchesCategory && matchesQuery) {
+          // Prerrequisitos
+          const matchesPrereq = (selectedPrereq === 'all') || (selectedPrereq === item.prereq);
+
+          // Precio
+          let matchesPrice = true;
+          if (selectedPrice === 'free') {
+            matchesPrice = item.price <= 0;
+          } else if (selectedPrice === 'low') {
+            matchesPrice = item.price > 0 && item.price <= 50;
+          } else if (selectedPrice === 'medium') {
+            matchesPrice = item.price > 50 && item.price <= 100;
+          } else if (selectedPrice === 'high') {
+            matchesPrice = item.price > 100;
+          }
+
+          if (matchesCategory && matchesQuery && matchesPrereq && matchesPrice) {
             visibleCount++;
             item.element.style.display = '';
             requestAnimationFrame(() => {
@@ -702,6 +785,10 @@
         });
       });
 
+      // Listeners para nuevos filtros
+      if (prereqFilter) prereqFilter.addEventListener('change', applyFilters);
+      if (priceFilter) priceFilter.addEventListener('change', applyFilters);
+
       // Botón para reiniciar todos los filtros
       if (resetBtn) {
         resetBtn.addEventListener('click', () => {
@@ -711,6 +798,8 @@
             if (b.dataset.filter === 'all') b.classList.add('active');
             else b.classList.remove('active');
           });
+          if (prereqFilter) prereqFilter.value = 'all';
+          if (priceFilter) priceFilter.value = 'all';
           searchInput.focus();
           applyFilters();
         });
