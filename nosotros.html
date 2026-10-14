@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nosotros — Portal Cursos Huaraz. Conoce nuestra misión y beneficios.">
+  <title>Nosotros — Portal Cursos Huaraz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero {
+      position: relative; min-height: 42vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: calc(var(--nav-h) + 60px) 20px 60px;
+      background: var(--dark); overflow: hidden; text-align: center;
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(0,229,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,.04) 1px, transparent 1px);
+      background-size: 55px 55px; pointer-events: none;
+    }
+    .page-hero-glow {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(0,255,159,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-breadcrumb { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .2em; color: var(--muted); margin-bottom: 16px; }
+    .page-breadcrumb a { color: var(--neon-green); transition: var(--transition); }
+    .page-breadcrumb a:hover { text-shadow: 0 0 10px var(--neon-green); }
+    .page-title { font-family: var(--font-head); font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: .08em; margin-bottom: 16px; line-height: 1.1; }
+    .page-sub { color: rgba(232,240,255,.6); font-size: .95rem; max-width: 500px; margin: 0 auto; }
+
+    /* Mission block */
+    .mission-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    @media(max-width:768px){ .mission-block { grid-template-columns: 1fr; } }
+    .mission-text .section-tag { text-align: left; }
+    .mission-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: .06em;
+      margin: 12px 0 20px;
+      line-height: 1.2;
+    }
+    .mission-desc {
+      color: rgba(232,240,255,.65);
+      line-height: 1.75;
+      font-size: .95rem;
+    }
+    .mission-visual {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-visual::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+    }
+    .terminal-nosotros {
+      font-family: var(--font-mono);
+      font-size: .82rem;
+      line-height: 2;
+    }
+    .tn-line { display: flex; gap: 10px; }
+    .tn-prompt { color: var(--neon-green); flex-shrink: 0; }
+    .tn-cmd   { color: var(--neon-cyan); }
+    .tn-out   { color: rgba(232,240,255,.6); padding-left: 20px; }
+
+    /* Values grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 80px;
+    }
+    .value-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .value-card:hover {
+      border-color: rgba(0,255,159,.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.3);
+    }
+    .value-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+    .value-title { font-family: var(--font-head); font-size: .85rem; letter-spacing: .08em; margin-bottom: 8px; color: var(--neon-green); }
+    .value-desc  { color: var(--muted); font-size: .8rem; line-height: 1.6; }
+
+    .back-top {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: .72rem;
+      color: var(--muted); transition: var(--transition); margin-top: 48px;
+    }
+    .back-top:hover { color: var(--neon-green); }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar" class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-bracket">[</span><span class="logo-name">PCH</span><span class="logo-bracket">]</span>
+        <span class="logo-full">Portal Cursos Huaraz</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="cursos.html" class="nav-link">Cursos</a></li>
+        <li><a href="categorias.html" class="nav-link">Categorías</a></li>
+        <li><a href="nosotros.html" class="nav-link active">Nosotros</a></li>
+        <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+      </ul>
+      <a href="cursos.html" class="nav-cta">Explorar Cursos</a>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <ul role="list">
+        <li><a href="index.html" class="mob-link" data-close>Inicio</a></li>
+        <li><a href="cursos.html" class="mob-link" data-close>Cursos</a></li>
+        <li><a href="categorias.html" class="mob-link" data-close>Categorías</a></li>
+        <li><a href="nosotros.html" class="mob-link" data-close>Nosotros</a></li>
+        <li><a href="contacto.html" class="mob-link" data-close>Contacto</a></li>
+        <li><a href="cursos.html" class="mob-cta" data-close>Explorar Cursos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-grid" aria-hidden="true"></div>
+    <div class="page-hero-glow" aria-hidden="true"></div>
+    <div class="page-hero-content">
+      <p class="page-breadcrumb fade-in-up delay-1"><a href="index.html">Inicio</a> &nbsp;/&nbsp; Nosotros</p>
+      <h1 class="page-title fade-in-up delay-2">QUIÉNES<br><span class="neon-green">SOMOS</span></h1>
+      <p class="page-sub fade-in-up delay-3">Conoce la misión, valores y propósito del Portal Cursos Huaraz</p>
+    </div>
+  </div>
+
+  <main class="section" style="background:var(--black); padding-top:60px;">
+    <div class="container">
+
+      <!-- Misión -->
+      <div class="mission-block">
+        <div class="mission-text reveal">
+          <div class="section-tag">// MISIÓN</div>
+          <h2 class="mission-title">Formación digital para<br><span class="neon-green">todos en Huaraz</span></h2>
+          <p class="mission-desc">
+            Portal Cursos Huaraz es una plataforma educativa del CFP Huaraz, diseñada para acercar la formación tecnológica y digital a estudiantes, profesionales y emprendedores de la región.
+          </p>
+          <br>
+          <p class="mission-desc">
+            Creemos que el conocimiento no debe tener barreras geográficas ni económicas. Nuestra misión es ofrecer rutas de aprendizaje modernas, prácticas y orientadas al mercado laboral actual.
+          </p>
+        </div>
+        <div class="mission-visual reveal">
+          <div class="terminal-nosotros">
+            <div class="tn-line"><span class="tn-prompt">$</span><span class="tn-cmd"> cat mision.txt</span></div>
+            <div class="tn-out">Centro de Formación Profesional</div>
+            <div class="tn-out">Región: Huaraz, Ancash, Perú</div>
+            <div class="tn-line" style="margin-top:12px;"><span class="tn-prompt">$</span><span class="tn-cmd"> ls areas/</span></div>
+            <div class="tn-out">programacion/</div>
+            <div class="tn-out">inteligencia_artificial/</div>
+            <div class="tn-out">diseno_digital/</div>
+            <div class="tn-out">marketing/</div>
+            <div class="tn-out">ofimatica/</div>
+            <div class="tn-out">redes/</div>
+            <div class="tn-line" style="margin-top:12px;"><span class="tn-prompt">$</span><span class="tn-cmd"> echo "Status"</span></div>
+            <div class="tn-out" style="color:var(--neon-green);">✓ SISTEMA ACTIVO</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beneficios -->
+      <div class="section-header reveal" style="margin-bottom:40px;">
+        <div class="section-tag">// VENTAJAS</div>
+        <h2 class="section-title">¿POR QUÉ ELEGIRNOS?</h2>
+      </div>
+      <div class="benefits-grid" style="margin-bottom:80px;">
+        <div class="benefit-card reveal">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+          <h3 class="benefit-title">Descubrimiento de Habilidades</h3>
+          <p class="benefit-desc">Explora áreas que quizás no sabías que te apasionaban. El aprendizaje abre puertas inesperadas hacia tu vocación digital.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></div>
+          <h3 class="benefit-title">Aprendizaje Organizado</h3>
+          <p class="benefit-desc">Contenido estructurado en módulos progresivos que te permiten avanzar a tu propio ritmo sin perder el hilo.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <h3 class="benefit-title">Exploración Tecnológica</h3>
+          <p class="benefit-desc">Accede a diferentes ramas del mundo tech en un solo lugar, con contenido actualizado y relevante.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></div>
+          <h3 class="benefit-title">Desarrollo Profesional</h3>
+          <p class="benefit-desc">Potencia tu perfil laboral con conocimientos prácticos y relevantes para el mercado digital de hoy.</p>
+        </div>
+      </div>
+
+      <!-- Valores -->
+      <div class="section-header reveal" style="margin-bottom:40px;">
+        <div class="section-tag">// VALORES</div>
+        <h2 class="section-title">NUESTROS <span class="neon-cyan">PRINCIPIOS</span></h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <span class="value-icon">🎯</span>
+          <div class="value-title">Enfoque Práctico</div>
+          <p class="value-desc">Aprendizaje orientado a resultados reales y aplicables desde el primer día.</p>
+        </div>
+        <div class="value-card reveal">
+          <span class="value-icon">🤝</span>
+          <div class="value-title">Comunidad</div>
+          <p class="value-desc">Fomentamos el trabajo colaborativo y el aprendizaje entre pares.</p>
+        </div>
+        <div class="value-card reveal">
+          <span class="value-icon">🚀</span>
+          <div class="value-title">Innovación</div>
+          <p class="value-desc">Siempre actualizados con las últimas tendencias y tecnologías del sector.</p>
+        </div>
+        <div class="value-card reveal">
+          <span class="value-icon">🌍</span>
+          <div class="value-title">Accesibilidad</div>
+          <p class="value-desc">Educación de calidad disponible para todos, sin importar el punto de partida.</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <a href="index.html" class="back-top reveal">← Volver al inicio</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><span class="logo-bracket">[</span><span class="logo-name">PCH</span><span class="logo-bracket">]</span></div>
+          <p class="footer-tagline">Portal Cursos Huaraz — CFP Huaraz</p>
+          <p class="footer-desc">Plataforma educativa digital orientada a la formación tecnológica y profesional en Huaraz, Perú.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Pie de página">
+          <h4 class="footer-heading">Navegación</h4>
+          <ul role="list">
+            <li><a href="index.html">Inicio</a></li><li><a href="cursos.html">Cursos</a></li>
+            <li><a href="categorias.html">Categorías</a></li><li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="footer-areas">
+          <h4 class="footer-heading">Áreas</h4>
+          <ul role="list">
+            <li>Programación Web</li><li>Inteligencia Artificial</li>
+            <li>Diseño Digital</li><li>Marketing Digital</li>
+            <li>Ofimática</li><li>Redes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Portal Cursos Huaraz — CFP Huaraz. Todos los derechos reservados.</span>
+        <span class="footer-status"><span class="status-dot"></span> SISTEMA ACTIVO</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
