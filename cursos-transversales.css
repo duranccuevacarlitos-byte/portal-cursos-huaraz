@@ -1,0 +1,48 @@
+/* Estilos del aporte de cursos; limitados a esta página. */
+.courses-page .courses-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.courses-page .course-card { padding: 0; }
+.courses-page .course-image { display: block; width: 100%; height: 160px; object-fit: cover; object-position: center; border-bottom: 1px solid var(--border); }
+.courses-page .course-body { padding: 20px; }
+.courses-page .course-number { color: #b8c6de; font: .7rem var(--font-mono); letter-spacing: .1em; }
+.courses-page .card-header { margin-bottom: 14px; }
+.courses-page .card-title { font-size: .95rem; line-height: 1.45; min-height: 2.9em; }
+.courses-page .card-desc { color: #b8c6de; font-size: .82rem; line-height: 1.55; }
+.courses-page .card-meta { margin-bottom: 12px; }
+.courses-page .meta-item, .courses-page .search-helper-text, .courses-page .extra-filters label { color: #b8c6de; }
+.courses-page .card-schedule { font-size: .78rem; line-height: 1.6; margin: 12px 0; }
+.courses-page .course-details { border-top: 1px solid var(--border); margin-top: 12px; }
+.courses-page .course-details summary { cursor: pointer; color: var(--neon-cyan); font-size: .85rem; padding: 14px 0; min-height: 44px; }
+.courses-page .course-details p, .courses-page .course-details ul { color: #b8c6de; font-size: .83rem; line-height: 1.6; }
+.courses-page .course-details h3 { font-size: .85rem; margin: 16px 0 8px; }
+.courses-page .course-details ul { list-style: disc; padding-left: 19px; }
+.courses-page .course-details li { margin: 6px 0; }
+.courses-page .course-project { border-left: 2px solid var(--neon-green); padding-left: 12px; margin: 16px 0; }
+.courses-page .card-btn { margin-top: 12px; min-height: 44px; }
+.courses-page .terminal-input, .courses-page .extra-filters select { color: var(--white); }
+.courses-page .terminal-input::placeholder { color: #a0afc9; }
+.courses-page .terminal-input-wrap { min-width: 0; }
+.courses-page .catalog-search-label { display: block; font-size: .85rem; margin-bottom: 10px; }
+.courses-page .catalog-search-help { margin: 10px 0; color: #b8c6de; font-size: .8rem; line-height: 1.6; }
+.courses-page .filter-btn, .courses-page .search-tag-chip { min-height: 44px; }
+.courses-page .filter-btn { color: #b8c6de; }
+.courses-page .search-clear-btn { display: inline-flex; width: 36px; height: 36px; }
+.courses-page .no-results-title { color: var(--white); }
+.courses-page .no-results-desc { color: #b8c6de; }
+.courses-page .catalog-heading { font: 700 clamp(1.1rem, 3vw, 1.45rem)/1.5 var(--font-head); margin-bottom: 12px; }
+.courses-page .catalog-intro { color: #b8c6de; font-size: .9rem; margin-bottom: 28px; max-width: 760px; }
+.courses-page :is(a, button, input, select, summary):focus-visible { outline: 2px solid var(--neon-cyan); outline-offset: 4px; }
+.courses-page [hidden] { display: none !important; }
+.courses-page .reveal { opacity: 1; transform: none; }
+.courses-page .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (max-width: 900px) {
+  .courses-page .courses-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .courses-page .course-body { padding: 18px; }
+}
+@media (max-width: 520px) {
+  .courses-page .courses-grid { grid-template-columns: minmax(0, 1fr); }
+  .courses-page .course-image { height: 148px; }
+  .courses-page .card-title { min-height: 0; }
+  .courses-page .terminal-prompt-prefix { font-size: .7rem; white-space: normal; flex-wrap: wrap; }
+  .courses-page .filter-bar { gap: 8px; }
+  .courses-page .extra-filters > div, .courses-page .extra-filters select { width: 100%; }
+}

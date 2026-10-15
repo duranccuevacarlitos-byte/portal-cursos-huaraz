@@ -11,6 +11,7 @@
 (function initSplash() {
 
   const splash     = document.getElementById('splash');
+  if (!splash) { initMainPage(); return; }
   const mainPage   = document.getElementById('main-page');
   const skipBtn    = document.getElementById('skip-btn');
   const termLines  = document.getElementById('terminal-lines');
@@ -20,7 +21,6 @@
 
   // Reduced-motion: skip instantly
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) { endSplash(); return; }
 
   // ── Canvas: floating particles ──────────────────
   const canvas = document.getElementById('splash-canvas');
@@ -149,8 +149,11 @@
     return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
+  // Omitir cuando las variables de la animación ya están inicializadas.
+  if (prefersReduced) { endSplash(); return; }
+
   // Start after 400ms
-  setTimeout(typeNextChar, 400);
+  msgTimeout = setTimeout(typeNextChar, 400);
 
   // ── Skip button ──────────────────────────────────
   skipBtn.addEventListener('click', endSplash);
@@ -202,7 +205,7 @@ function initMainPage() {
 ──────────────────────────────────────── */
 function initNavbar() {
   const navbar = document.getElementById('navbar');
-  const links  = navbar.querySelectorAll('.nav-link');
+  const links  = navbar.querySelectorAll('.nav-link[href^="#"]');
   const sections = Array.from(document.querySelectorAll('section[id]'));
 
   // Scroll shadow
@@ -406,7 +409,8 @@ function initContactForm() {
   const form     = document.getElementById('contact-form');
   const feedback = document.getElementById('form-feedback');
   const submitBtn= document.getElementById('form-submit-btn');
-  if (!form) return;
+  // El formulario interno tiene su propio controlador en contacto.html.
+  if (!form || !document.getElementById('splash')) return;
 
   form.addEventListener('submit', e => {
     e.preventDefault();
